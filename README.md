@@ -221,7 +221,7 @@ The package is organized into modular submodules; all public symbols are re‑ex
 | `DEFAULT_TOL = 1e-10` | Default numerical tolerance |
 | `DEFAULT_ATOL = 1e-15` | Default absolute tolerance |
 | `DEFAULT_RHO_MIN = 1e-300` | Minimum spectral radius for classification |
-| `ButterflyConfig(tol=DEFAULT_TOL, atol=DEFAULT_ATOL, rho_min=DEFAULT_RHO_MIN, max_depth=20, include_adjoint=False)` | Configuration dataclass |
+| `ButterflyConfig(tol=DEFAULT_TOL, atol=DEFAULT_ATOL, rho_min=DEFAULT_RHO_MIN, max_depth=20)` | Configuration dataclass |
 | `DEFAULT_CONFIG` | Default configuration instance |
 
 ## Command‑Line Interface
@@ -364,7 +364,7 @@ PYTHONPATH=. python experiments/exp7_cat_state.py
 - Ruff for formatting/linting (`ruff check .`, `ruff format .`)
 
 ### Testing
-- 233/233 unit tests passing (core, edge cases, property‑based)
+- Unit tests passing (core, edge cases, property‑based)
 - Hypothesis‑based property verification
 
 ### Virtual Environment

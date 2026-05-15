@@ -68,8 +68,10 @@ def ntt_butterfly(
         invN = pow(N, p - 2, p)  # modular inverse of N
 
     # Precompute all powers of omega: omega^j mod p for j = 0..N-1
-    # This reduces O(N log N) pow calls to O(N) precomputation + O(N) indexing
-    omega_powers = np.array([pow(omega, j, p) for j in range(N)], dtype=np.int64)
+    # Vectorized: sequential multiplication avoids O(N log N) pow() calls
+    omega_powers = np.ones(N, dtype=np.int64)
+    for j in range(1, N):
+        omega_powers[j] = (omega_powers[j - 1] * omega) % p
 
     seeds = []
     twiddles = []

@@ -153,9 +153,7 @@ def run_benchmarks():
         print(
             f"  {name:8s}: real {t_real * 1000:5.2f} ms, tropical {t_trop * 1000:5.2f} ms{gf2_str}"
         )
-
     print(f"\n{'=' * 70}")
-
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "--benchmark":

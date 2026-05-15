@@ -118,9 +118,9 @@ def butterfly_backward(
         seed_grads[k][1, 0] = (gv * u).sum()
         seed_grads[k][1, 1] = (gv * v).sum()
 
-        # Propagate gradient through transposed seed
-        gu_in = a * gu + c * gv
-        gv_in = b * gu + d * gv
+        # Propagate gradient through adjoint (conjugate-transpose) seed
+        gu_in = a.conj() * gu + c.conj() * gv
+        gv_in = b.conj() * gu + d.conj() * gv
         g[:, :h] = gu_in
         g[:, h:] = gv_in
         g = g.ravel()

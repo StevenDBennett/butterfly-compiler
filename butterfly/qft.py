@@ -50,8 +50,10 @@ def qft_butterfly(
         F'_n = (I_2 ⊗ F'_{n-1}) · (I ⊕ Ω_{n-1}) · (H ⊗ I_{n-1})
 
     Unrolled into a MultiSeedOperad with per-level twiddle diagonals.
-    The operad produces the bit-reversed DFT (DIF order). If include_swaps
-    is True, the output is permuted to match np.fft.fft(x, norm="ortho").
+    The operad produces a bit-reversed output (DIT order: bit-reversed input,
+    natural output). If include_swaps is True, the input is bit-reversed
+    before the butterfly, yielding natural-order output matching
+    np.fft.fft(x, norm="ortho").
 
     Key insight: The QFT breaks the uniform-seed structure of WHT precisely
     because the twiddle diagonal Ω_{n-k-1} is level- AND position-dependent.

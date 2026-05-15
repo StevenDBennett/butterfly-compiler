@@ -125,21 +125,21 @@ def _derived_subalgebra_dim(basis, tol=1e-12):
 
 def _derived_algebra_ce(basis, tol=1e-10, max_iter=5, random_seed=None):
     """
-        Compute basis of derived algebra [g,g] via Chevalley–Eilenberg randomized method.
+    Compute basis of derived algebra [g,g] via Chevalley–Eilenberg randomized method.
 
     Parameters
-        ----------
-        basis : list of (d,d) ndarray
-            Orthonormal basis matrices of Lie algebra g.
-        tol : float
-            Numerical tolerance for rank detection.
-        max_iter : int
-            Maximum number of random sampling iterations.
+    ----------
+    basis : list of (d,d) ndarray
+        Orthonormal basis matrices of Lie algebra g.
+    tol : float
+        Numerical tolerance for rank detection.
+    max_iter : int
+        Maximum number of random sampling iterations.
 
     Returns
-        -------
-        list of (d,d) ndarray
-            Orthonormal basis matrices of derived algebra [g,g].
+    -------
+    list of (d,d) ndarray
+        Orthonormal basis matrices of derived algebra [g,g].
     """
     if len(basis) <= 1:
         return []

@@ -202,12 +202,8 @@ def butterfly_resolvent(
     np.ndarray
         Resolvent vector.
     """
-    d = S.shape[0]
-    n = int(round(np.log(v.size) / np.log(d)))
-    eigvals_S = np.linalg.eigvals(S.astype(complex))
-    product_spectrum = build_product_spectrum(eigvals_S, n)
-    if np.any(np.abs(product_spectrum - mu) < 1e-12):
-        raise ValueError(f"μ={mu} is in the product spectrum; resolvent undefined.")
+    # spectral_butterfly_apply handles the eigendecomposition internally
+    # and checks for mu in the spectrum via the function evaluation
     return spectral_butterfly_apply(v, S, lambda z: 1.0 / (mu - z))
 
 

@@ -27,7 +27,6 @@ class SeedThermodynamics:
     spectral_radius: float
     min_eigenvalue_magnitude: float
     max_eigenvalue_magnitude: float
-    entropy_rate: float  # log of spectral radius
     is_unitary: bool
     is_conservative: bool  # |λ| = 1 for all λ
     is_contractive: bool  # |λ| < 1 for all λ
@@ -59,7 +58,6 @@ class SeedThermodynamics:
             spectral_radius=float(rho),
             min_eigenvalue_magnitude=float(rho_min),
             max_eigenvalue_magnitude=float(rho),
-            entropy_rate=float(np.log(rho_clamped)),
             is_unitary=is_unitary,
             is_conservative=bool(np.allclose(magnitudes, 1.0, atol=tol)),
             is_contractive=bool(np.all(magnitudes < 1 - tol)),
@@ -81,10 +79,10 @@ class SeedThermodynamics:
         elif self.is_expansive:
             classification.append("EXPANSIVE (information generation)")
 
-        return f"Thermodynamics: {', '.join(classification)} | λ_max={self.spectral_radius:.4f} | h={self.entropy_rate:.4f}"
+        return f"Thermodynamics: {', '.join(classification)} | λ_max={self.spectral_radius:.4f} | h={self.lyapunov_exponent:.4f}"
 
     def __repr__(self) -> str:
-        return f"SeedThermodynamics(spectral_radius={self.spectral_radius:.4f}, entropy_rate={self.entropy_rate:.4f}, is_unitary={self.is_unitary}, is_nilpotent={self.is_nilpotent})"
+        return f"SeedThermodynamics(spectral_radius={self.spectral_radius:.4f}, lyapunov_exponent={self.lyapunov_exponent:.4f}, is_unitary={self.is_unitary}, is_nilpotent={self.is_nilpotent})"
 
 
 def nilpotency_index(S: np.ndarray, tol: float = DEFAULT_TOL) -> int | None:

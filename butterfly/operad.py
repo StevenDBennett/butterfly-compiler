@@ -39,13 +39,10 @@ class ButterflyOperad:
 
     def compose(self, *sub_operads: ButterflyOperad) -> MultiSeedOperad:
         """
-        Operadic composition: graft sub-operads into leaves.
+        Concatenate seeds: parent seed followed by sub-operad seeds.
 
         Validates that all sub-operads use the same semiring.
         Returns a MultiSeedOperad (which is not itself composable).
-
-        If self has arity d and each sub has arity d, result has arity d^2.
-        This is the vertical composition (depth increase).
         """
         for sub in sub_operads:
             if sub.semiring is not self.semiring:

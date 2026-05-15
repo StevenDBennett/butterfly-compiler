@@ -112,21 +112,19 @@ def dyson_first_order(
     nodes, weights = leggauss(n_quadrature)
     s_vals = 0.5 * t * (nodes + 1)
     w_vals = 0.5 * t * weights
-    warned_dense = False
+    if not callable(B) and warn_on_dense and B.ndim == 2:
+        import warnings
+
+        warnings.warn(
+            "Dense B matrix in dyson_first_order: matmul is O(N\u00b2) per "
+            "quadrature node, dominating the O(N log N) butterfly cost. "
+            "Use a callable (rank-r form) for O(N log N) scaling.",
+            RuntimeWarning,
+            stacklevel=2,
+        )
     v_first = np.zeros_like(v0, dtype=complex)
     for s, w in zip(s_vals, w_vals, strict=True):
         inner = continuous_fast_forward(v0, A, s)
-        if not warned_dense and not callable(B) and warn_on_dense and B.ndim == 2:
-            import warnings
-
-            warnings.warn(
-                "Dense B matrix in dyson_first_order: matmul is O(N\u00b2) per "
-                "quadrature node, dominating the O(N log N) butterfly cost. "
-                "Use a callable (rank-r form) for O(N log N) scaling.",
-                RuntimeWarning,
-                stacklevel=2,
-            )
-            warned_dense = True
         perturbed = B(inner) if callable(B) else np.asarray(B) @ inner
         outer = continuous_fast_forward(perturbed, A, t - s)
         v_first = v_first + w * outer

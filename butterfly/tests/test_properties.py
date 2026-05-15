@@ -468,51 +468,6 @@ def test_qft_matches_numpy_ortho(x):
     assert check_allclose(y_qft, y_numpy, tol=1e-10)
 
 
-# ----------------------------------------------------------------------
-# Main test runner (compatible with existing test suite)
-# ----------------------------------------------------------------------
-
-
-def run_property_tests():
-    """Run all property-based tests and report results."""
-    import traceback
-
-    passed = 0
-    failed = 0
-
-    test_functions = [
-        test_semiring_axioms_real,
-        test_fast_kron_correctness_real,
-        test_fast_kron_correctness_gf2,
-        test_block_butterfly_correctness,
-        test_block_butterfly_correctness_simple,
-        test_solvability_series_consistency,
-        test_linearity_real_semiring,
-        test_qft_unitarity,
-        test_qft_matches_numpy_ortho,
-    ]
-
-    print("=" * 70)
-    print("  Butterfly Compiler v1.0 — Property-Based Tests")
-    print("=" * 70)
-
-    for test_func in test_functions:
-        try:
-            # Run hypothesis test via its internal runner
-            # This is a simplified approach; in practice you'd use pytest.
-            # For now, we call the function with explicit arguments? Not possible.
-            # Instead we'll rely on pytest integration.
-            print(f"  Skipping {test_func.__name__} (requires pytest)")
-            passed += 1
-        except Exception as e:
-            print(f"  ✗ {test_func.__name__}: {e}")
-            traceback.print_exc()
-            failed += 1
-
-    print(f"\nPassed: {passed}, Failed: {failed}")
-    return passed, failed
-
-
 if __name__ == "__main__":
     # When run directly, use pytest (if available)
     import subprocess

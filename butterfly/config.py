@@ -18,7 +18,6 @@ class ButterflyConfig:
     atol: float = DEFAULT_ATOL
     rho_min: float = DEFAULT_RHO_MIN
     max_depth: int = 20
-    include_adjoint: bool = False
 
 
 DEFAULT_CONFIG = ButterflyConfig()
