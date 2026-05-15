@@ -23,7 +23,7 @@ All algorithms are unified under thermodynamic/solvability constraints derived f
 ## Installation
 
 ```bash
-git clone https://github.com/butterfly-compiler/butterfly-compiler.git
+git clone https://github.com/StevenDBennett/butterfly-compiler.git
 cd butterfly-compiler
 python -m venv venv
 source venv/bin/activate  # or venv\Scripts\activate on Windows

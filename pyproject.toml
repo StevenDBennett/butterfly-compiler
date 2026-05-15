@@ -45,8 +45,8 @@ numba = ["numba>=0.60"]
 scipy = ["scipy>=1.13"]
 
 [project.urls]
-Repository = "https://github.com/butterfly-compiler/butterfly-compiler"
-Documentation = "https://github.com/butterfly-compiler/butterfly-compiler#readme"
+Repository = "https://github.com/StevenDBennett/butterfly-compiler"
+Documentation = "https://github.com/StevenDBennett/butterfly-compiler#readme"
 
 [project.scripts]
 butterfly = "butterfly_compiler:main"
